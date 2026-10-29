@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trắc Nghiệm Vật Lý Hạt Nhân & Mô Hình Tương Tác</title>
+    <title>Mini Game Phòng Thí Nghiệm Hạt Nhân</title>
     <style>
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #1e293b;
+            background: #0f172a;
             color: #f8fafc;
             margin: 0;
             padding: 20px;
@@ -19,18 +19,27 @@
         .container {
             width: 100%;
             max-width: 900px;
-            background: #0f172a;
+            background: #1e293b;
             border-radius: 16px;
             padding: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 1px solid #334155;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            border: 2px solid #0ea5e9;
         }
 
         h1 {
             text-align: center;
             color: #38bdf8;
+            margin-bottom: 8px;
+            font-size: 26px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
             margin-bottom: 25px;
-            font-size: 24px;
+            font-size: 14px;
         }
 
         .nav-tabs {
@@ -42,9 +51,9 @@
         .tab-btn {
             flex: 1;
             padding: 12px;
-            background: #1e293b;
-            border: 1px solid #475569;
-            color: #94a3b8;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #64748b;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
@@ -62,15 +71,20 @@
             color: #34d399;
         }
 
+        .tab-btn.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .section-content { display: none; }
         .section-content.active { display: block; }
 
         .question-card {
-            background: #1e293b;
+            background: #0f172a;
             border-radius: 10px;
             padding: 16px;
             margin-bottom: 15px;
-            border-left: 4px solid #38bdf8;
+            border-left: 4px solid #0ea5e9;
         }
 
         .question-card p {
@@ -88,20 +102,21 @@
         .option-label {
             display: flex;
             align-items: center;
-            background: #334155;
+            background: #1e293b;
             padding: 10px 14px;
             border-radius: 6px;
             cursor: pointer;
             transition: background 0.2s;
+            border: 1px solid #334155;
         }
 
-        .option-label:hover { background: #475569; }
-        .option-label input { margin-right: 12px; }
+        .option-label:hover { background: #334155; }
+        .option-label input { margin-right: 12px; accent-color: #0ea5e9; }
 
         .action-btn {
             width: 100%;
             padding: 14px;
-            background: #10b981;
+            background: #0ea5e9;
             color: white;
             border: none;
             border-radius: 8px;
@@ -109,9 +124,10 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
+            transition: background 0.2s;
         }
 
-        .action-btn:hover { background: #059669; }
+        .action-btn:hover { background: #0284c7; }
 
         .status-msg {
             margin-top: 15px;
@@ -131,18 +147,35 @@
             background: #0f172a;
             border: 2px dashed #10b981;
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
         }
 
-        .model-canvas {
-            width: 100%;
-            height: 500px;
-            background: #1e293b;
+        .lab-badge {
+            display: inline-block;
+            background: #065f46;
+            color: #34d399;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .lab-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #10b981;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
             border-radius: 8px;
             margin-top: 15px;
-            overflow: hidden;
+            transition: background 0.2s;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
+
+        .lab-btn:hover { background: #059669; }
 
         .hidden { display: none !important; }
     </style>
@@ -150,19 +183,20 @@
 <body>
 
 <div class="container">
-    <h1>⚛️ Ôn Tập & Thực Hành Vật Lý Hạt Nhân</h1>
+    <h1>🧪 Mini Game: Phóng Xạ & Phản Ứng Hạt Nhân</h1>
+    <div class="subtitle">Hệ thống mô phỏng và kiểm tra kiến thức chuyên ngành hóa - lý</div>
 
     <!-- TABS CHỌN PHẦN -->
     <div class="nav-tabs">
-        <button id="tab-1" class="tab-btn active" onclick="switchTab(1)">Phần 1: Phóng xạ NT</button>
-        <button id="tab-2" class="tab-btn" onclick="switchTab(2)">Phần 2: Phân hạch</button>
-        <button id="tab-3" class="tab-btn" onclick="switchTab(3)">Phần 3: Nhiệt hạch</button>
+        <button id="tab-1" class="tab-btn active" onclick="switchTab(1)">1. Phóng xạ nhân tạo</button>
+        <button id="tab-2" class="tab-btn locked" onclick="switchTab(2)">2. Phản ứng phân hạch</button>
+        <button id="tab-3" class="tab-btn locked" onclick="switchTab(3)">3. Phản ứng nhiệt hạch</button>
     </div>
 
     <!-- ==================== PHẦN 1: PHÓNG XẠ NHÂN TẠO ==================== -->
     <div id="section-1" class="section-content active">
         <div id="quiz-1">
-            <h3>Nhiệm vụ: Trả lời đúng 5 câu hỏi để mở khóa mô hình</h3>
+            <h3>Thử thách 1: Trả lời đúng 5 câu hỏi để mở khóa phòng thí nghiệm</h3>
             
             <div class="question-card">
                 <p>1. Phóng xạ nhân tạo là hiện tượng do nguyên nhân nào gây ra?</p>
@@ -218,20 +252,19 @@
             <div id="msg-1" class="status-msg"></div>
         </div>
 
-        <!-- MÔ HÌNH THỰC HÀNH PHẦN 1 -->
+        <!-- MÔ HÌNH PHẦN 1 -->
         <div id="model-1" class="model-box hidden">
-            <h2 style="color: #34d399;">✅ ĐÃ MỞ KHÓA: Mô Hình Thực Hành Phóng Xạ</h2>
-            <p>Tương tác trực tiếp: Quan sát quá trình phân rã và chu kỳ bán rã của hạt nhân.</p>
-            <div class="model-canvas" id="canvas-1">
-                <iframe src="https://phet.colorado.edu/sims/html/radioactive-dating-game/latest/radioactive-dating-game_vi.html" width="100%" height="100%" scrolling="no" allowfullscreen style="border:none;"></iframe>
-            </div>
+            <span class="lab-badge">PHÒNG THÍ NGHIỆM ẢO #1</span>
+            <h2 style="color: #34d399; margin-top: 5px;">Mô Hình Thực Hành Phóng Xạ</h2>
+            <p>Quan sát quá trình phân rã chu kỳ bán rã và tương tác trực quan với các đồng vị phóng xạ.</p>
+            <a href="https://phet.colorado.edu/sims/html/radioactive-dating-game/latest/radioactive-dating-game_vi.html" target="_blank" class="lab-btn">🚀 Mở Thí Nghiệm Phóng Xạ Ngay</a>
         </div>
     </div>
 
     <!-- ==================== PHẦN 2: PHẢN ỨNG PHÂN HẠCH ==================== -->
     <div id="section-2" class="section-content">
         <div id="quiz-2">
-            <h3>Nhiệm vụ: Trả lời đúng 5 câu hỏi để mở khóa mô hình</h3>
+            <h3>Thử thách 2: Trả lời đúng 5 câu hỏi để mở khóa phòng thí nghiệm</h3>
 
             <div class="question-card">
                 <p>1. Phản ứng phân hạch là quá trình một hạt nhân nặng hấp thụ hạt nào?</p>
@@ -287,20 +320,19 @@
             <div id="msg-2" class="status-msg"></div>
         </div>
 
-        <!-- MÔ HÌNH THỰC HÀNH PHẦN 2 -->
+        <!-- MÔ HÌNH PHẦN 2 -->
         <div id="model-2" class="model-box hidden">
-            <h2 style="color: #34d399;">✅ ĐÃ MỞ KHÓA: Mô Hình Thực Hành Phân Hạch</h2>
-            <p>Tương tác trực tiếp: Bắn hạt neutron vào hạt nhân U-235 để kích hoạt phản ứng dây chuyền.</p>
-            <div class="model-canvas" id="canvas-2">
-                <iframe src="https://phet.colorado.edu/sims/html/nuclear-fission/latest/nuclear-fission_vi.html" width="100%" height="100%" scrolling="no" allowfullscreen style="border:none;"></iframe>
-            </div>
+            <span class="lab-badge">PHÒNG THÍ NGHIỆM ẢO #2</span>
+            <h2 style="color: #34d399; margin-top: 5px;">Mô Hình Phản Ứng Dây Chuyền (Phân Hạch)</h2>
+            <p>Bắn hạt neutron vào hạt nhân U-235 để mô phỏng sự vỡ hạt và kiểm soát phản ứng dây chuyền.</p>
+            <a href="https://phet.colorado.edu/sims/html/nuclear-fission/latest/nuclear-fission_vi.html" target="_blank" class="lab-btn">🚀 Mở Thí Nghiệm Phân Hạch Ngay</a>
         </div>
     </div>
 
     <!-- ==================== PHẦN 3: PHẢN ỨNG NHIỆT HẠCH ==================== -->
     <div id="section-3" class="section-content">
         <div id="quiz-3">
-            <h3>Nhiệm vụ: Trả lời đúng 5 câu hỏi để mở khóa mô hình</h3>
+            <h3>Thử thách 3: Trả lời đúng 5 câu hỏi để hoàn thành Mini Game</h3>
 
             <div class="question-card">
                 <p>1. Phản ứng nhiệt hạch là gì?</p>
@@ -352,17 +384,16 @@
                 </div>
             </div>
 
-            <button class="action-btn" onclick="checkPart(3)">Nộp bài & Mở khóa</button>
+            <button class="action-btn" onclick="checkPart(3)">Nộp bài hoàn thành Mini Game</button>
             <div id="msg-3" class="status-msg"></div>
         </div>
 
-        <!-- MÔ HÌNH THỰC HÀNH PHẦN 3 -->
+        <!-- MÔ HÌNH PHẦN 3 -->
         <div id="model-3" class="model-box hidden">
-            <h2 style="color: #34d399;">✅ ĐÃ MỞ KHÓA: Mô Hình Thực Hành Tổng Hợp Hạt Nhân</h2>
-            <p>Tương tác trực tiếp: Khám phá điều kiện phản ứng hạt nhân ở nhiệt độ cao.</p>
-            <div class="model-canvas" id="canvas-3">
-                <iframe src="https://phet.colorado.edu/sims/html/nuclear-fission/latest/nuclear-fission_vi.html" width="100%" height="100%" scrolling="no" allowfullscreen style="border:none;"></iframe>
-            </div>
+            <span class="lab-badge">PHÒNG THÍ NGHIỆM ẢO #3</span>
+            <h2 style="color: #34d399; margin-top: 5px;">Mô Hình Tổng Hợp Hạt Nhân (Nhiệt Hạch)</h2>
+            <p>Khám phá năng lượng vô tận và điều kiện tổng hợp các đồng vịHydro ở nhiệt độ cao.</p>
+            <a href="https://phet.colorado.edu/sims/html/nuclear-fission/latest/nuclear-fission_vi.html" target="_blank" class="lab-btn">🚀 Mở Thí Nghiệm Nhiệt Hạch Ngay</a>
         </div>
     </div>
 </div>
@@ -375,8 +406,16 @@
         3: { p3_q1: "B", p3_q2: "A", p3_q3: "B", p3_q4: "B", p3_q5: "C" }
     };
 
-    // Chuyển Tab
+    // Theo dõi phần nào đã được mở khóa
+    const unlockedParts = { 1: true, 2: false, 3: false };
+
+    // Chuyển Tab có kiểm soát điều kiện khóa/mở
     function switchTab(partNum) {
+        if (!unlockedParts[partNum]) {
+            alert("🔒 Bạn cần hoàn thành phần trước đó để mở khóa phòng thí nghiệm này!");
+            return;
+        }
+
         document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
             btn.classList.toggle('active', idx === partNum - 1);
         });
@@ -412,23 +451,30 @@
 
         if (allCorrect) {
             msgDiv.className = "status-msg success";
-            msgDiv.textContent = "🎉 Chính xác! Đã mở khóa mô hình thành công.";
+            msgDiv.textContent = "🎉 Chính xác! Đã mở khóa phòng thí nghiệm ảo thành công.";
             
-            // Đánh dấu tab đã hoàn thành
+            // Đánh dấu tab hiện tại đã hoàn thành
             const tabBtn = document.getElementById(`tab-${partNum}`);
             tabBtn.classList.add('completed');
             if (!tabBtn.textContent.includes("✓")) {
                 tabBtn.textContent += " ✓";
             }
 
-            // Ẩn bảng câu hỏi vĩnh viễn, hiện mô hình
+            // Mở khóa phần tiếp theo trên menu
+            if (partNum < 3) {
+                unlockedParts[partNum + 1] = true;
+                const nextTab = document.getElementById(`tab-${partNum + 1}`);
+                nextTab.classList.remove('locked');
+            }
+
+            // Ẩn bảng câu hỏi của phần này, HIỆN NGAY mô hình tương tác tương ứng lên
             setTimeout(() => {
                 document.getElementById(`quiz-${partNum}`).classList.add('hidden');
                 document.getElementById(`model-${partNum}`).classList.remove('hidden');
-            }, 800);
+            }, 600);
         } else {
             msgDiv.className = "status-msg error";
-            msgDiv.textContent = "❌ Có câu trả lời chưa chính xác. Bạn hãy kiểm tra lại nhé!";
+            msgDiv.textContent = "❌ Có câu trả lời chưa chính xác. Hãy kiểm tra lại và thử lại nhé!";
         }
     }
 </script>
