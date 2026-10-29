@@ -512,3 +512,12 @@
                 document.getElementById(`quiz-${partNum}`).classList.add('hidden');
                 document.getElementById(`model-${partNum}`).classList.remove('hidden');
             }, 1200);
+        } else {
+            msgDiv.className = "status-msg error";
+            msgDiv.textContent = "⚠️ Có câu trả lời chưa đúng. Vui lòng xem đáp án gợi ý phía trên và thử lại!";
+        }
+    }
+</script>
+
+</body>
+</html>
