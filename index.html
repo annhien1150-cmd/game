@@ -106,25 +106,25 @@
             padding: 10px 14px;
             border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
             border: 1px solid #334155;
         }
 
         .option-label:hover { background: #334155; }
         .option-label input { margin-right: 12px; accent-color: #0ea5e9; }
 
-        /* Làm nổi bật đáp án đúng/sai sau khi nộp */
-        .option-label.correct-ans {
+        /* TÔ MÀU ĐÁP ÁN ĐÚNG/SAI */
+        .option-label.is-correct {
             background: #065f46 !important;
-            border-color: #34d399 !important;
-            color: #6ee7b7;
+            border-color: #10b981 !important;
+            color: #6ee7b7 !important;
             font-weight: bold;
         }
 
-        .option-label.wrong-ans {
+        .option-label.is-wrong {
             background: #7f1d1d !important;
-            border-color: #fca5a5 !important;
-            color: #fca5a5;
+            border-color: #f87171 !important;
+            color: #fca5a5 !important;
         }
 
         .answer-feedback {
@@ -136,13 +136,13 @@
             display: none;
         }
 
-        .answer-feedback.correct {
+        .answer-feedback.show-correct {
             background: #065f46;
             color: #34d399;
             display: block;
         }
 
-        .answer-feedback.incorrect {
+        .answer-feedback.show-wrong {
             background: #7f1d1d;
             color: #fca5a5;
             display: block;
@@ -176,7 +176,7 @@
         .status-msg.error { background: #7f1d1d; color: #fca5a5; display: block; }
         .status-msg.success { background: #065f46; color: #6ee7b7; display: block; }
 
-        /* KHU VỰC MÔ HÌNH THỰC HÀNH */
+        /* MÔ HÌNH THỰC HÀNH */
         .model-box {
             margin-top: 25px;
             background: #0f172a;
@@ -233,59 +233,59 @@
         <div id="quiz-1">
             <h3>Thử thách 1: Trả lời đúng 5 câu hỏi để mở khóa phòng thí nghiệm</h3>
             
-            <div class="question-card" data-q="p1_q1">
+            <div class="question-card" id="card-p1_q1">
                 <p>1. Phóng xạ nhân tạo là hiện tượng do nguyên nhân nào gây ra?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p1_q1" value="A"> A. Tự phát biến đổi hạt nhân</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p1_q1" value="B"> B. Con người dùng tác nhân bên ngoài kích thích</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p1_q1" value="C"> C. Sự phân rã nhiệt độ cao</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p1_q1" value="D"> D. Tác động của từ trường Trái Đất</label>
+                    <label class="option-label" id="lbl-p1_q1-A"><input type="radio" name="p1_q1" value="A"> A. Tự phát biến đổi hạt nhân</label>
+                    <label class="option-label" id="lbl-p1_q1-B"><input type="radio" name="p1_q1" value="B"> B. Con người dùng tác nhân bên ngoài kích thích</label>
+                    <label class="option-label" id="lbl-p1_q1-C"><input type="radio" name="p1_q1" value="C"> C. Sự phân rã nhiệt độ cao</label>
+                    <label class="option-label" id="lbl-p1_q1-D"><input type="radio" name="p1_q1" value="D"> D. Tác động của từ trường Trái Đất</label>
                 </div>
-                <div id="feedback-p1_q1" class="answer-feedback"></div>
+                <div id="fb-p1_q1" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p1_q2">
+            <div class="question-card" id="card-p1_q2">
                 <p>2. Dụng cụ nào thường được dùng để bắn phá hạt nhân trong phóng xạ nhân tạo?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p1_q2" value="A"> A. Kính hiển vi điện tử</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p1_q2" value="B"> B. Máy gia tốc hạt</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p1_q2" value="C"> C. Lò vi sóng công nghiệp</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p1_q2" value="D"> D. Máy quang phổ</label>
+                    <label class="option-label" id="lbl-p1_q2-A"><input type="radio" name="p1_q2" value="A"> A. Kính hiển vi điện tử</label>
+                    <label class="option-label" id="lbl-p1_q2-B"><input type="radio" name="p1_q2" value="B"> B. Máy gia tốc hạt</label>
+                    <label class="option-label" id="lbl-p1_q2-C"><input type="radio" name="p1_q2" value="C"> C. Lò vi sóng công nghiệp</label>
+                    <label class="option-label" id="lbl-p1_q2-D"><input type="radio" name="p1_q2" value="D"> D. Máy quang phổ</label>
                 </div>
-                <div id="feedback-p1_q2" class="answer-feedback"></div>
+                <div id="fb-p1_q2" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p1_q3">
+            <div class="question-card" id="card-p1_q3">
                 <p>3. Tia phóng xạ nào có thể phát ra từ phóng xạ nhân tạo?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p1_q3" value="A"> A. Tia hồng ngoại</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p1_q3" value="B"> B. Tia tử ngoại</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p1_q3" value="C"> C. Các tia &alpha;, &beta;, &gamma;</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p1_q3" value="D"> D. Sóng radio</label>
+                    <label class="option-label" id="lbl-p1_q3-A"><input type="radio" name="p1_q3" value="A"> A. Tia hồng ngoại</label>
+                    <label class="option-label" id="lbl-p1_q3-B"><input type="radio" name="p1_q3" value="B"> B. Tia tử ngoại</label>
+                    <label class="option-label" id="lbl-p1_q3-C"><input type="radio" name="p1_q3" value="C"> C. Các tia &alpha;, &beta;, &gamma;</label>
+                    <label class="option-label" id="lbl-p1_q3-D"><input type="radio" name="p1_q3" value="D"> D. Sóng radio</label>
                 </div>
-                <div id="feedback-p1_q3" class="answer-feedback"></div>
+                <div id="fb-p1_q3" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p1_q4">
+            <div class="question-card" id="card-p1_q4">
                 <p>4. Ứng dụng quan trọng nhất của phóng xạ nhân tạo trong y học là gì?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p1_q4" value="A"> A. Chẩn đoán và điều trị ung thư</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p1_q4" value="B"> B. Sát trùng dụng cụ phẫu thuật</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p1_q4" value="C"> C. Đo huyết áp tự động</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p1_q4" value="D"> D. Tổng hợp Vitamin D</label>
+                    <label class="option-label" id="lbl-p1_q4-A"><input type="radio" name="p1_q4" value="A"> A. Chẩn đoán và điều trị ung thư</label>
+                    <label class="option-label" id="lbl-p1_q4-B"><input type="radio" name="p1_q4" value="B"> B. Sát trùng dụng cụ phẫu thuật</label>
+                    <label class="option-label" id="lbl-p1_q4-C"><input type="radio" name="p1_q4" value="C"> C. Đo huyết áp tự động</label>
+                    <label class="option-label" id="lbl-p1_q4-D"><input type="radio" name="p1_q4" value="D"> D. Tổng hợp Vitamin D</label>
                 </div>
-                <div id="feedback-p1_q4" class="answer-feedback"></div>
+                <div id="fb-p1_q4" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p1_q5">
+            <div class="question-card" id="card-p1_q5">
                 <p>5. Khác biệt chính giữa phóng xạ nhân tạo và phóng xạ tự nhiên là gì?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p1_q5" value="A"> A. Tia phát ra có tính chất khác nhau hoàn toàn</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p1_q5" value="B"> B. Phóng xạ nhân tạo do con người chủ động kích thích</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p1_q5" value="C"> C. Phóng xạ tự nhiên không phát ra năng lượng</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p1_q5" value="D"> D. Phóng xạ nhân tạo chỉ xảy ra trong nước</label>
+                    <label class="option-label" id="lbl-p1_q5-A"><input type="radio" name="p1_q5" value="A"> A. Tia phát ra có tính chất khác nhau hoàn toàn</label>
+                    <label class="option-label" id="lbl-p1_q5-B"><input type="radio" name="p1_q5" value="B"> B. Phóng xạ nhân tạo do con người chủ động kích thích</label>
+                    <label class="option-label" id="lbl-p1_q5-C"><input type="radio" name="p1_q5" value="C"> C. Phóng xạ tự nhiên không phát ra năng lượng</label>
+                    <label class="option-label" id="lbl-p1_q5-D"><input type="radio" name="p1_q5" value="D"> D. Phóng xạ nhân tạo chỉ xảy ra trong nước</label>
                 </div>
-                <div id="feedback-p1_q5" class="answer-feedback"></div>
+                <div id="fb-p1_q5" class="answer-feedback"></div>
             </div>
 
             <button class="action-btn" onclick="checkPart(1)">Nộp bài & Kiểm tra đáp án</button>
@@ -306,59 +306,59 @@
         <div id="quiz-2">
             <h3>Thử thách 2: Trả lời đúng 5 câu hỏi để mở khóa phòng thí nghiệm</h3>
 
-            <div class="question-card" data-q="p2_q1">
+            <div class="question-card" id="card-p2_q1">
                 <p>1. Phản ứng phân hạch là quá trình một hạt nhân nặng hấp thụ hạt nào?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p2_q1" value="A"> A. Proton nhanh</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p2_q1" value="B"> B. Electron</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p2_q1" value="C"> C. Neutron chậm</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p2_q1" value="D"> D. Hạt Positron</label>
+                    <label class="option-label" id="lbl-p2_q1-A"><input type="radio" name="p2_q1" value="A"> A. Proton nhanh</label>
+                    <label class="option-label" id="lbl-p2_q1-B"><input type="radio" name="p2_q1" value="B"> B. Electron</label>
+                    <label class="option-label" id="lbl-p2_q1-C"><input type="radio" name="p2_q1" value="C"> C. Neutron chậm</label>
+                    <label class="option-label" id="lbl-p2_q1-D"><input type="radio" name="p2_q1" value="D"> D. Hạt Positron</label>
                 </div>
-                <div id="feedback-p2_q1" class="answer-feedback"></div>
+                <div id="fb-p2_q1" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p2_q2">
+            <div class="question-card" id="card-p2_q2">
                 <p>2. Nhiên liệu phổ biến dùng trong phản ứng phân hạch là gì?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p2_q2" value="A"> A. Hydro và Cáctông</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p2_q2" value="B"> B. U-235 hoặc Pu-239</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p2_q2" value="C"> C. Heli-4</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p2_q2" value="D"> D. Carbon-12</label>
+                    <label class="option-label" id="lbl-p2_q2-A"><input type="radio" name="p2_q2" value="A"> A. Hydro và Cáctông</label>
+                    <label class="option-label" id="lbl-p2_q2-B"><input type="radio" name="p2_q2" value="B"> B. U-235 hoặc Pu-239</label>
+                    <label class="option-label" id="lbl-p2_q2-C"><input type="radio" name="p2_q2" value="C"> C. Heli-4</label>
+                    <label class="option-label" id="lbl-p2_q2-D"><input type="radio" name="p2_q2" value="D"> D. Carbon-12</label>
                 </div>
-                <div id="feedback-p2_q2" class="answer-feedback"></div>
+                <div id="fb-p2_q2" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p2_q3">
+            <div class="question-card" id="card-p2_q3">
                 <p>3. Mỗi phân hạch hạt nhân U-235 tỏa ra năng lượng khoảng bao nhiêu?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p2_q3" value="A"> A. 200 MeV</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p2_q3" value="B"> B. 17.6 MeV</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p2_q3" value="C"> C. 200 eV</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p2_q3" value="D"> D. 1000 MeV</label>
+                    <label class="option-label" id="lbl-p2_q3-A"><input type="radio" name="p2_q3" value="A"> A. 200 MeV</label>
+                    <label class="option-label" id="lbl-p2_q3-B"><input type="radio" name="p2_q3" value="B"> B. 17.6 MeV</label>
+                    <label class="option-label" id="lbl-p2_q3-C"><input type="radio" name="p2_q3" value="C"> C. 200 eV</label>
+                    <label class="option-label" id="lbl-p2_q3-D"><input type="radio" name="p2_q3" value="D"> D. 1000 MeV</label>
                 </div>
-                <div id="feedback-p2_q3" class="answer-feedback"></div>
+                <div id="fb-p2_q3" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p2_q4">
+            <div class="question-card" id="card-p2_q4">
                 <p>4. Yếu tố nào giúp duy trì "phản ứng dây chuyền" trong lò phản ứng?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p2_q4" value="A"> A. Các bức xạ gamma</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p2_q4" value="B"> B. 2 - 3 neutron mới sinh ra sau mỗi phân hạch</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p2_q4" value="C"> C. Nhiệt độ môi trường cực cao</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p2_q4" value="D"> D. Áp suất khí quyển</label>
+                    <label class="option-label" id="lbl-p2_q4-A"><input type="radio" name="p2_q4" value="A"> A. Các bức xạ gamma</label>
+                    <label class="option-label" id="lbl-p2_q4-B"><input type="radio" name="p2_q4" value="B"> B. 2 - 3 neutron mới sinh ra sau mỗi phân hạch</label>
+                    <label class="option-label" id="lbl-p2_q4-C"><input type="radio" name="p2_q4" value="C"> C. Nhiệt độ môi trường cực cao</label>
+                    <label class="option-label" id="lbl-p2_q4-D"><input type="radio" name="p2_q4" value="D"> D. Áp suất khí quyển</label>
                 </div>
-                <div id="feedback-p2_q4" class="answer-feedback"></div>
+                <div id="fb-p2_q4" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p2_q5">
+            <div class="question-card" id="card-p2_q5">
                 <p>5. Nhược điểm lớn nhất của năng lượng phân hạch hiện nay là gì?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p2_q5" value="A"> A. Không tạo ra điện năng</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p2_q5" value="B"> B. Tốn quá nhiều nước biển</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p2_q5" value="C"> C. Rác thải phóng xạ tồn tại rất lâu và nguy cơ sự cố</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p2_q5" value="D"> D. Dễ dàng chế tạo tại nhà</label>
+                    <label class="option-label" id="lbl-p2_q5-A"><input type="radio" name="p2_q5" value="A"> A. Không tạo ra điện năng</label>
+                    <label class="option-label" id="lbl-p2_q5-B"><input type="radio" name="p2_q5" value="B"> B. Tốn quá nhiều nước biển</label>
+                    <label class="option-label" id="lbl-p2_q5-C"><input type="radio" name="p2_q5" value="C"> C. Rác thải phóng xạ tồn tại rất lâu và nguy cơ sự cố</label>
+                    <label class="option-label" id="lbl-p2_q5-D"><input type="radio" name="p2_q5" value="D"> D. Dễ dàng chế tạo tại nhà</label>
                 </div>
-                <div id="feedback-p2_q5" class="answer-feedback"></div>
+                <div id="fb-p2_q5" class="answer-feedback"></div>
             </div>
 
             <button class="action-btn" onclick="checkPart(2)">Nộp bài & Kiểm tra đáp án</button>
@@ -379,59 +379,59 @@
         <div id="quiz-3">
             <h3>Thử thách 3: Trả lời đúng 5 câu hỏi để hoàn thành Mini Game</h3>
 
-            <div class="question-card" data-q="p3_q1">
+            <div class="question-card" id="card-p3_q1">
                 <p>1. Phản ứng nhiệt hạch là gì?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p3_q1" value="A"> A. Bắn vỡ hạt nhân nặng thành hạt nhẹ</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p3_q1" value="B"> B. Kết hợp hai hay nhiều hạt nhân nhẹ thành hạt nhân nặng hơn</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p3_q1" value="C"> C. Sự phân rã tự nhiên của Uranium</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p3_q1" value="D"> D. Đốt cháy khí Hidro trong oxy</label>
+                    <label class="option-label" id="lbl-p3_q1-A"><input type="radio" name="p3_q1" value="A"> A. Bắn vỡ hạt nhân nặng thành hạt nhẹ</label>
+                    <label class="option-label" id="lbl-p3_q1-B"><input type="radio" name="p3_q1" value="B"> B. Kết hợp hai hay nhiều hạt nhân nhẹ thành hạt nhân nặng hơn</label>
+                    <label class="option-label" id="lbl-p3_q1-C"><input type="radio" name="p3_q1" value="C"> C. Sự phân rã tự nhiên của Uranium</label>
+                    <label class="option-label" id="lbl-p3_q1-D"><input type="radio" name="p3_q1" value="D"> D. Đốt cháy khí Hidro trong oxy</label>
                 </div>
-                <div id="feedback-p3_q1" class="answer-feedback"></div>
+                <div id="fb-p3_q1" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p3_q2">
+            <div class="question-card" id="card-p3_q2">
                 <p>2. Điều kiện bắt buộc để xảy ra phản ứng nhiệt hạch là gì?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p3_q2" value="A"> A. Nhiệt độ hàng chục đến hàng trăm triệu độ C</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p3_q2" value="B"> B. Làm lạnh xuống gần 0 Kelvin</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p3_q2" value="C"> C. Đặt trong môi trường chân không tuyệt đối</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p3_q2" value="D"> D. Không cần điều kiện gì đặc biệt</label>
+                    <label class="option-label" id="lbl-p3_q2-A"><input type="radio" name="p3_q2" value="A"> A. Nhiệt độ hàng chục đến hàng trăm triệu độ C</label>
+                    <label class="option-label" id="lbl-p3_q2-B"><input type="radio" name="p3_q2" value="B"> B. Làm lạnh xuống gần 0 Kelvin</label>
+                    <label class="option-label" id="lbl-p3_q2-C"><input type="radio" name="p3_q2" value="C"> C. Đặt trong môi trường chân không tuyệt đối</label>
+                    <label class="option-label" id="lbl-p3_q2-D"><input type="radio" name="p3_q2" value="D"> D. Không cần điều kiện gì đặc biệt</label>
                 </div>
-                <div id="feedback-p3_q2" class="answer-feedback"></div>
+                <div id="fb-p3_q2" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p3_q3">
+            <div class="question-card" id="card-p3_q3">
                 <p>3. Nhiên liệu chủ yếu cho phản ứng nhiệt hạch (như Deuterium) có thể khai thác từ đâu?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p3_q3" value="A"> A. Khai thác mỏ quặng sâu trong lòng đất</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p3_q3" value="B"> B. Dồi dào trong nước biển</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p3_q3" value="C"> C. Tổng hợp từ chất thải nhựa</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p3_q3" value="D"> D. Nhập khẩu từ các hành tinh khác</label>
+                    <label class="option-label" id="lbl-p3_q3-A"><input type="radio" name="p3_q3" value="A"> A. Khai thác mỏ quặng sâu trong lòng đất</label>
+                    <label class="option-label" id="lbl-p3_q3-B"><input type="radio" name="p3_q3" value="B"> B. Dồi dào trong nước biển</label>
+                    <label class="option-label" id="lbl-p3_q3-C"><input type="radio" name="p3_q3" value="C"> C. Tổng hợp từ chất thải nhựa</label>
+                    <label class="option-label" id="lbl-p3_q3-D"><input type="radio" name="p3_q3" value="D"> D. Nhập khẩu từ các hành tinh khác</label>
                 </div>
-                <div id="feedback-p3_q3" class="answer-feedback"></div>
+                <div id="fb-p3_q3" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p3_q4">
+            <div class="question-card" id="card-p3_q4">
                 <p>4. Ưu điểm lớn nhất của nhiệt hạch so với phân hạch là gì?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p3_q4" value="A"> A. Dễ chế tạo hơn rất nhiều</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p3_q4" value="B"> B. Ít hoặc không tạo ra rác thải phóng xạ độc hại lâu năm</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p3_q4" value="C"> C. Không tỏa ra nhiệt năng</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p3_q4" value="D"> D. Chi phí vận hành cực kỳ rẻ hiện nay</label>
+                    <label class="option-label" id="lbl-p3_q4-A"><input type="radio" name="p3_q4" value="A"> A. Dễ chế tạo hơn rất nhiều</label>
+                    <label class="option-label" id="lbl-p3_q4-B"><input type="radio" name="p3_q4" value="B"> B. Ít hoặc không tạo ra rác thải phóng xạ độc hại lâu năm</label>
+                    <label class="option-label" id="lbl-p3_q4-C"><input type="radio" name="p3_q4" value="C"> C. Không tỏa ra nhiệt năng</label>
+                    <label class="option-label" id="lbl-p3_q4-D"><input type="radio" name="p3_q4" value="D"> D. Chi phí vận hành cực kỳ rẻ hiện nay</label>
                 </div>
-                <div id="feedback-p3_q4" class="answer-feedback"></div>
+                <div id="fb-p3_q4" class="answer-feedback"></div>
             </div>
 
-            <div class="question-card" data-q="p3_q5">
+            <div class="question-card" id="card-p3_q5">
                 <p>5. Phản ứng tổng hợp Deuterium (D) và Tritium (T) tạo thành hạt nhân Heli và hạt nào?</p>
                 <div class="options">
-                    <label class="option-label" data-val="A"><input type="radio" name="p3_q5" value="A"> A. Electron</label>
-                    <label class="option-label" data-val="B"><input type="radio" name="p3_q5" value="B"> B. Proton</label>
-                    <label class="option-label" data-val="C"><input type="radio" name="p3_q5" value="C"> C. Neutron (n) kèm năng lượng 17.6 MeV</label>
-                    <label class="option-label" data-val="D"><input type="radio" name="p3_q5" value="D"> D. Positron</label>
+                    <label class="option-label" id="lbl-p3_q5-A"><input type="radio" name="p3_q5" value="A"> A. Electron</label>
+                    <label class="option-label" id="lbl-p3_q5-B"><input type="radio" name="p3_q5" value="B"> B. Proton</label>
+                    <label class="option-label" id="lbl-p3_q5-C"><input type="radio" name="p3_q5" value="C"> C. Neutron (n) kèm năng lượng 17.6 MeV</label>
+                    <label class="option-label" id="lbl-p3_q5-D"><input type="radio" name="p3_q5" value="D"> D. Positron</label>
                 </div>
-                <div id="feedback-p3_q5" class="answer-feedback"></div>
+                <div id="fb-p3_q5" class="answer-feedback"></div>
             </div>
 
             <button class="action-btn" onclick="checkPart(3)">Nộp bài hoàn thành Mini Game</button>
@@ -449,20 +449,18 @@
 </div>
 
 <script>
-    // ĐÁP ÁN ĐÚNG CHO TỪNG PHẦN
+    // ĐÁP ÁN ĐÚNG BẮT BUỘC
     const answers = {
         1: { p1_q1: "B", p1_q2: "B", p1_q3: "C", p1_q4: "A", p1_q5: "B" },
         2: { p2_q1: "C", p2_q2: "B", p2_q3: "A", p2_q4: "B", p2_q5: "C" },
         3: { p3_q1: "B", p3_q2: "A", p3_q3: "B", p3_q4: "B", p3_q5: "C" }
     };
 
-    // Theo dõi phần nào đã được mở khóa
     const unlockedParts = { 1: true, 2: false, 3: false };
 
-    // Chuyển Tab có kiểm soát điều kiện khóa/mở
     function switchTab(partNum) {
         if (!unlockedParts[partNum]) {
-            alert("🔒 Bạn cần hoàn thành phần trước đó để mở khóa phòng thí nghiệm này!");
+            alert("🔒 Bạn cần hoàn thành đúng toàn bộ 5 câu hỏi của phần trước để truy cập phần này!");
             return;
         }
 
@@ -474,52 +472,43 @@
         });
     }
 
-    // Kiểm tra đáp án từng phần & HIỂN THỊ ĐÁP ÁN CHI TIẾT
     function checkPart(partNum) {
         const correctAnswers = answers[partNum];
         let allCorrect = true;
 
         for (let q in correctAnswers) {
-            const selected = document.querySelector(`input[name="${q}"]:checked`);
-            const feedbackDiv = document.getElementById(`feedback-${q}`);
-            const card = document.querySelector(`[data-q="${q}"]`);
-            const labels = card.querySelectorAll('.option-label');
             const correctVal = correctAnswers[q];
+            const selected = document.querySelector(`input[name="${q}"]:checked`);
+            const fbDiv = document.getElementById(`fb-${q}`);
 
-            // Reset trạng thái màu sắc cũ của các đáp án
-            labels.forEach(lbl => {
-                lbl.classList.remove('correct-ans', 'wrong-ans');
+            // Reset tất cả style đáp án về bình thường
+            ["A", "B", "C", "D"].forEach(val => {
+                const lbl = document.getElementById(`lbl-${q}-${val}`);
+                if (lbl) {
+                    lbl.classList.remove('is-correct', 'is-wrong');
+                }
             });
 
             if (!selected) {
+                // Người chơi chưa chọn
                 allCorrect = false;
-                feedbackDiv.className = "answer-feedback incorrect";
-                feedbackDiv.textContent = `❌ Bạn chưa chọn câu này! Đáp án đúng là: ${correctVal}`;
-                
-                // Tô sáng đáp án đúng
-                labels.forEach(lbl => {
-                    if (lbl.getAttribute('data-val') === correctVal) {
-                        lbl.classList.add('correct-ans');
-                    }
-                });
+                fbDiv.className = "answer-feedback show-wrong";
+                fbDiv.innerHTML = `⚠️ Chưa chọn câu này! Đáp án đúng là: <b>${correctVal}</b>`;
+                document.getElementById(`lbl-${q}-${correctVal}`).classList.add('is-correct');
             } else {
                 const userVal = selected.value;
                 if (userVal === correctVal) {
-                    feedbackDiv.className = "answer-feedback correct";
-                    feedbackDiv.textContent = `✅ Chính xác!`;
-                    selected.closest('.option-label').classList.add('correct-ans');
+                    // Chọn đúng
+                    fbDiv.className = "answer-feedback show-correct";
+                    fbDiv.innerHTML = `✅ Chính xác!`;
+                    document.getElementById(`lbl-${q}-${correctVal}`).classList.add('is-correct');
                 } else {
+                    // Chọn sai -> Hiện rõ câu sai và chỉ ra câu đúng
                     allCorrect = false;
-                    feedbackDiv.className = "answer-feedback incorrect";
-                    feedbackDiv.textContent = `❌ Chưa đúng! Đáp án chính xác là: ${correctVal}`;
-                    
-                    // Tô đỏ đáp án chọn sai và tô xanh đáp án đúng
-                    selected.closest('.option-label').classList.add('wrong-ans');
-                    labels.forEach(lbl => {
-                        if (lbl.getAttribute('data-val') === correctVal) {
-                            lbl.classList.add('correct-ans');
-                        }
-                    });
+                    fbDiv.className = "answer-feedback show-wrong";
+                    fbDiv.innerHTML = `❌ Bạn chọn <b>${userVal}</b> (Sai). Đáp án đúng chính xác là: <b>${correctVal}</b>`;
+                    document.getElementById(`lbl-${q}-${userVal}`).classList.add('is-wrong');
+                    document.getElementById(`lbl-${q}-${correctVal}`).classList.add('is-correct');
                 }
             }
         }
@@ -528,7 +517,7 @@
 
         if (allCorrect) {
             msgDiv.className = "status-msg success";
-            msgDiv.textContent = "🎉 Tuyệt vời! Bạn đã trả lời đúng tất cả 5 câu hỏi và mở khóa phòng thí nghiệm!";
+            msgDiv.innerHTML = "🎉 Tuyệt vời! Bạn đã trả lời chính xác 5/5 câu hỏi và mở khóa thành công phòng thí nghiệm!";
             
             const tabBtn = document.getElementById(`tab-${partNum}`);
             tabBtn.classList.add('completed');
@@ -538,17 +527,16 @@
 
             if (partNum < 3) {
                 unlockedParts[partNum + 1] = true;
-                const nextTab = document.getElementById(`tab-${partNum + 1}`);
-                nextTab.classList.remove('locked');
+                document.getElementById(`tab-${partNum + 1}`).classList.remove('locked');
             }
 
             setTimeout(() => {
                 document.getElementById(`quiz-${partNum}`).classList.add('hidden');
                 document.getElementById(`model-${partNum}`).classList.remove('hidden');
-            }, 1200);
+            }, 1000);
         } else {
             msgDiv.className = "status-msg error";
-            msgDiv.textContent = "⚠️ Có câu trả lời chưa chính xác. Hãy xem các đáp án đúng được làm nổi bật bên trên và thử lại nhé!";
+            msgDiv.innerHTML = "❌ Rất tiếc, có câu trả lời chưa đúng. Bạn hãy xem lại các đáp án đúng được làm nổi bật bên trên và chọn lại nhé!";
         }
     }
 </script>
